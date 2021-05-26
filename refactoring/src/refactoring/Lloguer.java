@@ -4,6 +4,14 @@ import java.util.Date;
 
 public class Lloguer {
 	
+	private static final double UNIDADES_DE_COSTE_BASIC = 3;
+	private static final double DIAS_COSTE_STANDARD_BASIC = 3;
+	private static final double AUMENTO_COSTE_BASIC_POR_ALQUILER_LARGO = 1.5;
+	private static final double UNIDADES_DE_COSTE_GENERAL = 4;
+	private static final double DIAS_COSTE_STANDARD_GENERAL = 2;
+	private static final double AUMENTO_COSTE_GENERAL_POR_ALQUILER_LARGO = 2.5;
+	private static final double UNIDADES_DE_COSTE_LUXE = 6;
+	
 	private Date data;
 	private int dies;
 	private Vehicle vehicle;
@@ -37,19 +45,21 @@ public class Lloguer {
     	double quantitat = 0;
         switch (getVehicle().getCategoria()) {
             case Vehicle.BASIC:
-            	quantitat += 3;
-                if (getDies() > 3) {
-                    quantitat += (getDies() - 3) * 1.5;
+            	quantitat += UNIDADES_DE_COSTE_BASIC;
+                if (getDies() > DIAS_COSTE_STANDARD_BASIC) {
+                    quantitat += (getDies() - DIAS_COSTE_STANDARD_BASIC) * 
+                    		AUMENTO_COSTE_BASIC_POR_ALQUILER_LARGO;
                 }
                 break;
             case Vehicle.GENERAL:
-                quantitat += 4;
-                if (getDies() > 2) {
-                    quantitat += (getDies() - 2) * 2.5;
+                quantitat += UNIDADES_DE_COSTE_GENERAL;
+                if (getDies() > DIAS_COSTE_STANDARD_GENERAL) {
+                    quantitat += (getDies() - DIAS_COSTE_STANDARD_GENERAL) *
+                    		AUMENTO_COSTE_GENERAL_POR_ALQUILER_LARGO ;
                 }
                 break;
             case Vehicle.LUXE:
-                quantitat += getDies() * 6;
+                quantitat += getDies() * UNIDADES_DE_COSTE_LUXE;
                 break;
         }
         return quantitat;
