@@ -23,7 +23,7 @@ public class Main {
 		Date date3 = dateFormat.parse("3/3/2016");
 		Lloguer lloguer3 = new Lloguer(date3, 5, vehicle3);
 		
-		Client miCliente = new Client("71306213A", "David", "636722659");
+		Client miCliente = new Client("71306213A", "David Díez", "636722659");
 		miCliente.afegeix(lloguer1);
 		miCliente.afegeix(lloguer2);
 		miCliente.afegeix(lloguer3);
