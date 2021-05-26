@@ -57,24 +57,30 @@ public class Client {
     }
 
     public String informe() {
-    	
-    	// creamos la cabecera del informe. Ahora vemos claramente 3 partes en el método
-        String resultat = "Informe de lloguers del client " +
-            getNom() + " (" + getNif() + ")\n";
-        for (Lloguer lloguer: lloguers) {
-
-            // composa els resultats d'aquest lloguer
-            resultat += "\t" +
-                lloguer.getVehicle().getMarca() +
-                " " + lloguer.getVehicle().getModel() + ": " +
-                (lloguer.quantitat() * EUROS_PER_UNITAT_DE_COST) + "€" + "\n";
-        }
-
-        // afegeix informació final
-        resultat += "Import a pagar: " + importTotal() + "€\n" +
-            "Punts guanyats: " + bonificacionsTotals() + "\n";
-        return resultat;
+    	return composaCapsalera() +
+    			composaDetall() +
+    			composaPeu();
     }
     
-
+    public String composaCapsalera() {
+    	String cabeceraInforme = "Informe de lloguers del client " + getNom() +
+    			" (" + getNif() + ")\n";
+    	return cabeceraInforme;
+    }
+    
+    public String composaDetall() {
+    	String detalleInforme = "";
+        for (Lloguer lloguer: lloguers) {
+        	detalleInforme += "\t" +
+                lloguer.getVehicle().getMarca() + " " + 
+                lloguer.getVehicle().getModel() + ": " +
+                (lloguer.quantitat() * EUROS_PER_UNITAT_DE_COST) + "€" + "\n";
+        }
+        return detalleInforme;
+    }
+    
+    public String composaPeu() {
+        return "Import a pagar: " + importTotal() + "€\n" +
+            "Punts guanyats: " + bonificacionsTotals() + "\n";
+    }
 }
