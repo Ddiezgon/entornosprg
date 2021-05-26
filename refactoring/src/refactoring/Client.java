@@ -38,9 +38,16 @@ public class Client {
     public boolean conte(Lloguer lloguer) {
         return lloguers.contains(lloguer);
     }
+    
+    public double importTotal() {
+    	double total = 0;
+    	for (Lloguer lloguer: lloguers) {
+    		total += lloguer.quantitat() * 30;
+    	}
+    	return total;
+    }
 
     public String informe() {
-    	double total = 0;
         int bonificacions = 0;
         String resultat = "Informe de lloguers del client " +
             getNom() + " (" + getNif() + ")\n";
@@ -58,14 +65,12 @@ public class Client {
             // composa els resultats d'aquest lloguer
             resultat += "\t" +
                 lloguer.getVehicle().getMarca() +
-                " " +
-                lloguer.getVehicle().getModel() + ": " +
+                " " + lloguer.getVehicle().getModel() + ": " +
                 (lloguer.quantitat() * 30) + "€" + "\n";
-            total += lloguer.quantitat() * 30;
         }
 
         // afegeix informació final
-        resultat += "Import a pagar: " + total + "€\n" +
+        resultat += "Import a pagar: " + importTotal() + "€\n" +
             "Punts guanyats: " + bonificacions + "\n";
         return resultat;
     }
