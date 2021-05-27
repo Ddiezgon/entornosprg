@@ -28,6 +28,7 @@ public class Main {
 		miCliente.afegeix(lloguer2);
 		miCliente.afegeix(lloguer3);
 		System.out.println(miCliente.informe());
+		System.out.println(miCliente.informeHTML());
 		
 	}
 	
